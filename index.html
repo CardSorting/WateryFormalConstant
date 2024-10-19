@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TensorAI - Create Anything</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom styles for hover and glow effect */
+    .glow-effect:hover {
+      border-color: #9333ea;
+      transition: border-color 0.3s;
+    }
+    .transition-all {
+      transition: all 0.3s ease;
+    }
+    .hover-upgrade::before {
+      content: 'UPGRADE';
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: #ff4500;
+      color: white;
+      font-size: 10px;
+      padding: 0.25rem;
+      border-radius: 0 0 0 0.25rem;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen">
+
+  <!-- Header Section -->
+  <header class="flex justify-between items-center p-4 bg-black shadow-md">
+    <div class="flex items-center space-x-4">
+      <div class="text-3xl font-bold">TensorAI</div>
+      <nav class="space-x-4">
+        <a href="#" class="text-gray-400 hover:text-white">Home</a>
+        <a href="#" class="text-gray-400 hover:text-white">Explore</a>
+        <a href="#" class="text-gray-400 hover:text-white">Models</a>
+        <a href="#" class="text-gray-400 hover:text-white">Profile</a>
+      </nav>
+    </div>
+    <div class="flex items-center">
+      <input type="text" placeholder="Search..." class="bg-gray-800 p-2 rounded-md text-gray-300 mr-2" id="search-input" />
+      <button class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition-all" onclick="modelExplorer.generateContent()">Generate</button>
+      <button class="bg-yellow-500 text-white px-4 py-2 rounded-md ml-2 hover:bg-yellow-600 transition-all">Sign In</button>
+    </div>
+  </header>
+
+  <!-- Main "Create Anything" Section -->
+  <section class="flex flex-col items-center justify-center text-center py-28 bg-gradient-to-b from-black via-gray-900 to-black border-t-4 border-indigo-500" style="box-shadow: 0 0 15px rgba(147, 51, 234, 0.7);">
+    <h1 class="text-7xl font-extrabold text-indigo-400 glow-effect animate-bounce">Create Anything</h1>
+
+    <!-- Input Section -->
+    <div class="relative w-full max-w-4xl mt-12" style="box-shadow: 0 0 15px rgba(147, 51, 234, 0.7);">
+      <input type="text" placeholder="" class="w-full p-5 rounded-full bg-gray-800 text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-indigo-500 shadow-lg" id="generation-input" onfocus="stopTypingDemo()" />
+      <button class="absolute right-4 top-3 bg-indigo-600 p-3 rounded-full text-white hover:bg-indigo-700 transition-all shadow-lg animate-pulse" onclick="modelExplorer.startGeneration()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </button>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full flex justify-center items-center pointer-events-none">
+        <span class="text-gray-500 text-2xl typing-demo">Create a stunning sunset over a serene mountain lake</span>
+      </div>
+      <style>
+        @keyframes typing {
+          from { width: 0; }
+          to { width: 100%; }
+        }
+        .typing-demo {
+          overflow: hidden;
+          white-space: nowrap;
+          border-right: 2px solid rgba(255, 255, 255, 0.75);
+          animation: typing 4s steps(40, end) infinite;
+        }
+      </style>
+    </div>
+    <script>
+      function stopTypingDemo() {
+        document.querySelector('.typing-demo').style.animation = 'none';
+        document.querySelector('.typing-demo').innerText = '';
+      }
+    </script>
+
+    <!-- Enhanced Model Identification Section -->
+    <div class="mt-10 w-full max-w-3xl flex items-center justify-center bg-gray-800 p-4 rounded-lg shadow-lg transform transition-transform duration-300 ease-in-out hover:scale-105 relative">
+        <img src="https://path.to/your-model-image.jpg" alt="Current Model" class="w-24 h-24 rounded-lg mr-4 border-2 border-indigo-500" style="box-shadow: 0 0 15px rgba(147, 51, 234, 0.7);" />
+        <div class="flex-grow text-left">
+          <p class="text-gray-400 text-sm">Currently using...</p>
+          <h3 class="text-2xl font-semibold text-gray-200">General Fast V2 (Flux)</h3>
+          <p class="text-gray-500 text-xs mt-1">Utilize our cutting-edge model for enhanced accuracy and rapid outcomes in your AI creations.</p>
+        </div>
+        <button class="ml-4 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-all duration-300 ease-in-out flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+          Modify
+        </button>
+        <div class="absolute bottom-0 right-0 bg-indigo-500 text-white text-xs px-2 py-1 rounded-tr-lg">V2.1</div>
+      </div>
+    </section>
+
+    <!-- Featured Concepts Section Wrapper -->
+    <div class="flex justify-center w-full mt-16">
+      <!-- Featured Concepts Section -->
+      <section class="w-full max-w-5xl">
+        <h2 class="text-3xl font-bold text-gray-200 mb-4">Featured Concepts</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Concept Card 1 -->
+          <div class="relative bg-gray-800 rounded-lg shadow-lg hover:scale-105 transition-transform glow-effect overflow-hidden">
+            <img src="https://path.to/concept1.jpg" alt="Concept 1" class="w-full h-48 object-cover">
+            <button class="absolute bottom-4 left-4 bg-gray-900 text-white px-2 py-1 rounded-lg">Details</button>
+          </div>
+          <!-- Concept Card 2 -->
+          <div class="relative bg-gray-800 rounded-lg shadow-lg hover:scale-105 transition-transform glow-effect overflow-hidden hover-upgrade">
+            <img src="https://path.to/concept2.jpg" alt="Concept 2" class="w-full h-48 object-cover">
+            <button class="absolute bottom-4 left-4 bg-gray-900 text-white px-2 py-1 rounded-lg">Upgrade</button>
+          </div>
+          <!-- Concept Card 3 -->
+          <div class="relative bg-gray-800 rounded-lg shadow-lg hover:scale-105 transition-transform glow-effect overflow-hidden">
+            <img src="https://path.to/concept3.jpg" alt="Concept 3" class="w-full h-48 object-cover">
+            <button class="absolute bottom-4 left-4 bg-gray-900 text-white px-2 py-1 rounded-lg">Details</button>
+          </div>
+          <!-- Concept Card 4 -->
+          <div class="relative bg-gray-800 rounded-lg shadow-lg hover:scale-105 transition-transform glow-effect overflow-hidden hover-upgrade">
+            <img src="https://path.to/concept4.jpg" alt="Concept 4" class="w-full h-48 object-cover">
+            <button class="absolute bottom-4 left-4 bg-gray-900 text-white px-2 py-1 rounded-lg">Upgrade</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Recommended Models Section -->
+    <section class="p-6">
+      <h2 class="text-2xl font-bold mb-6">Recommended Models</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="model-grid">
+        <!-- Model Cards will be dynamically injected here via JavaScript -->
+      </div>
+    </section>
+
+    <!-- Explore/Models/Search Section -->
+    <section class="w-full mt-12 flex justify-center space-x-4">
+      <button class="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition-all">Explore</button>
+      <button class="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition-all">Search</button>
+      <button class="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition-all">Models</button>
+    </section>
+
+  <!-- Footer -->
+  <footer class="p-4 bg-black text-center text-gray-500 mt-12">
+    © 2024 TensorAI. All rights reserved.
+  </footer>
+
+  <!-- JavaScript Class for Managing Models -->
+  <script>
+    class ModelExplorer {
+      constructor() {
+        this.models = [];
+        this.initialize();
+      }
+
+      // Initialize the class and load default models
+      initialize() {
+        this.loadModels();
+        this.renderModelGrid();
+      }
+
+      // Load the models (can be extended with API integration)
+      loadModels() {
+        this.models = [
+          { id: 1, title: 'anime girl sitting on a bench', author: 'りら', views: '122K', likes: 122, image: 'https://path.to/anime-image1.jpg', type: 'For You' },
+          { id: 2, title: 'anime girl with white hair', author: 'りら', views: '117K', likes: 117, image: 'https://path.to/anime-image2.jpg', type: 'Trending' },
+          { id: 3, title: 'Forest Magic', author: 'Duck_911', views: '113K', likes: 113, image: 'https://path.to/forest-image.jpg', type: 'For You' },
+          { id: 4, title: 'Misc #108', author: 'theseoldshades', views: '89K', likes: 89, image: 'https://path.to/misc-image.jpg', type: 'Popular' },
+        ];
+      }
+
+      // Render the model grid dynamically
+      renderModelGrid() {
+        const grid = document.getElementById('model-grid');
+        grid.innerHTML = ''; // Clear previous content
+
+        this.models.forEach((model) => {
+          const card = `
+            <div class="bg-gray-800 rounded-lg shadow-lg hover:scale-105 transition-transform glow-effect overflow-hidden">
+              <div class="relative">
+                <img src="${model.image}" alt="${model.title}" class="w-full h-48 object-cover">
+                <span class="absolute top-0 left-0 bg-purple-500 text-xs text-white px-2 py-1">${model.type}</span>
+              </div>
+              <div class="p-4">
+                <h3 class="text-lg font-semibold">${model.title}</h3>
+                <p class="text-gray-400 text-sm">By ${model.author}</p>
+                <p class="text-gray-400 text-sm">${model.views} views • ${model.likes} likes</p>
+              </div>
+              <div class="p-4 flex justify-between items-center">
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition-all">Follow</button>
+                <button class="text-gray-400 text-sm">❤️ ${model.likes}</button>
+              </div>
+            </div>`;
+          grid.innerHTML += card; // Append each card to the grid
+        });
+      }
+
+      // Placeholder method to simulate generation
+      startGeneration() {
+        const input = document.getElementById('generation-input').value;
+        alert(`Generating based on: ${input}`);
+      }
+
+      // Method to dynamically update models (can be triggered by search/filter)
+      generateContent() {
+        this.renderModelGrid();
+      }
+    }
+
+    // Initialize the ModelExplorer class on page load
+    const modelExplorer = new ModelExplorer();
+  </script>
+
+</body>
+
+</html>
